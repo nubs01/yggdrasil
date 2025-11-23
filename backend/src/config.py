@@ -16,11 +16,14 @@ class Settings(BaseSettings):
     )
 
     # Database
-    POSTGRES_USER: str = Field(..., env="POSTGRES_USER")
-    POSTGRES_PASSWORD: str = Field(..., env="POSTGRES_PASSWORD")
-    POSTGRES_HOST: str = Field(..., env="POSTGRES_HOST")
-    POSTGRES_PORT: str = Field(..., env="POSTGRES_PORT")
-    POSTGRES_DB: str = Field(..., env="POSTGRES_DB")
+    SUPABASE_URL: str = Field(..., env="SUPABASE_URL")
+    SUPABASE_KEY: str = Field(..., env="SUPABASE_KEY")
+
+    # Data
+    S3_ACCESS_KEY: str = Field(..., env="S3_ACCESS_KEY")
+    S3_SECRET_KEY: str = Field(..., env="S3_SECRET_KEY")
+    S3_REGION: str = Field(..., env="S3_REGION")
+    S3_BUCKET_NAME: str = Field(..., env="S3_BUCKET_NAME")
 
     # DEBUG
     DEBUG: bool = Field(False, env="DEBUG")
