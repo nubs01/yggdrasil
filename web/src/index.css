@@ -1,68 +1,206 @@
-:root {
-  font-family: system-ui, Avenir, Helvetica, Arial, sans-serif;
-  line-height: 1.5;
-  font-weight: 400;
+@import "tailwindcss";
 
-  color-scheme: light dark;
-  color: rgba(255, 255, 255, 0.87);
-  background-color: #242424;
+/* Tailwind tokens mapped to CSS variables (all HSL-based) */
+@theme {
+  --color-border: hsl(var(--border));
+  --color-input: hsl(var(--input));
+  --color-ring: hsl(var(--ring));
+  --color-background: hsl(var(--background));
+  --color-foreground: hsl(var(--foreground));
+  --color-primary: hsl(var(--primary));
+  --color-primary-foreground: hsl(var(--primary-foreground));
+  --color-secondary: hsl(var(--secondary));
+  --color-secondary-foreground: hsl(var(--secondary-foreground));
+  --color-destructive: hsl(var(--destructive));
+  --color-destructive-foreground: hsl(var(--destructive-foreground));
+  --color-muted: hsl(var(--muted));
+  --color-muted-foreground: hsl(var(--muted-foreground));
+  --color-accent: hsl(var(--accent));
+  --color-accent-foreground: hsl(var(--accent-foreground));
+  --color-popover: hsl(var(--popover));
+  --color-popover-foreground: hsl(var(--popover-foreground));
+  --color-card: hsl(var(--card));
+  --color-card-foreground: hsl(var(--card-foreground));
 
-  font-synthesis: none;
-  text-rendering: optimizeLegibility;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+  /* =========================
+     Brand Palettes (HSL tuples)
+     ========================= */
+
+  /* Wasabi (greens) */
+  --wasabi-50-hsl: 78 92% 95%;
+  --wasabi-100-hsl: 80 89% 89%;
+  --wasabi-200-hsl: 81 88% 80%;
+  --wasabi-300-hsl: 82 84% 67%;
+  --wasabi-400-hsl: 83 78% 56%;
+  --wasabi-500-hsl: 84 80% 44%;
+  --wasabi-600-hsl: 85 85% 34%;
+  --wasabi-700-hsl: 86 78% 27%;
+  --wasabi-800-hsl: 88 61% 20%;
+  --wasabi-900-hsl: 89 80% 10%;
+
+  /* Charcoal (neutrals) */
+  --charcoal-50-hsl: 0 0% 96%;
+  --charcoal-100-hsl: 0 0% 91%;
+  --charcoal-200-hsl: 0 0% 82%;
+  --charcoal-300-hsl: 0 0% 69%;
+  --charcoal-400-hsl: 0 0% 53%;
+  --charcoal-500-hsl: 0 0% 43%;
+  --charcoal-600-hsl: 0 0% 36%;
+  --charcoal-700-hsl: 0 0% 31%;
+  --charcoal-800-hsl: 0 0% 27%;
+  --charcoal-900-hsl: 0 0% 24%;
+
+  /* Aqua (cyans) */
+  --aqua-50-hsl: 183 100% 96%;
+  --aqua-100-hsl: 185 96% 90%;
+  --aqua-200-hsl: 186 94% 82%;
+  --aqua-300-hsl: 187 92% 69%;
+  --aqua-400-hsl: 188 86% 53%;
+  --aqua-500-hsl: 189 94% 43%;
+  --aqua-600-hsl: 192 91% 36%;
+  --aqua-700-hsl: 193 82% 31%;
+  --aqua-800-hsl: 194 70% 27%;
+  --aqua-900-hsl: 196 64% 24%;
+
+  /* Alabaster Grey (neutrals) */
+  --alabaster-hsl: 222 15% 87%;
+
+  /* Powder Blue (neutrals) */
+  --powderblue-hsl: 211 29% 74%;
+
+  /* Pacific Blue (blues) */
+  --pacificblue-hsl: 188 36% 52%;
+
+  /* Charcoal Blue (dark neutrals) */
+  --charcoalblue-hsl: 222 19% 27%;
+
+  /* Carbon Black (dark neutrals) */
+  --carbonblack-hsl: 240 5% 11%;
+
+  /* Neutral helpers */
+  --white-hsl: 0 0% 100%;
+  --offwhite-hsl: 0 0% 98%;
+  --ink-hsl: 240 10% 10%; /* near-black used in your original theme */
+
+  /* Expose brand colors to Tailwind (text-wasabi-500, bg-aqua-500, etc.) */
+  --color-wasabi-50: hsl(var(--wasabi-50-hsl));
+  --color-wasabi-100: hsl(var(--wasabi-100-hsl));
+  --color-wasabi-200: hsl(var(--wasabi-200-hsl));
+  --color-wasabi-300: hsl(var(--wasabi-300-hsl));
+  --color-wasabi-400: hsl(var(--wasabi-400-hsl));
+  --color-wasabi-500: hsl(var(--wasabi-500-hsl));
+  --color-wasabi-600: hsl(var(--wasabi-600-hsl));
+  --color-wasabi-700: hsl(var(--wasabi-700-hsl));
+  --color-wasabi-800: hsl(var(--wasabi-800-hsl));
+  --color-wasabi-900: hsl(var(--wasabi-900-hsl));
+
+  --color-charcoal-50: hsl(var(--charcoal-50-hsl));
+  --color-charcoal-100: hsl(var(--charcoal-100-hsl));
+  --color-charcoal-200: hsl(var(--charcoal-200-hsl));
+  --color-charcoal-300: hsl(var(--charcoal-300-hsl));
+  --color-charcoal-400: hsl(var(--charcoal-400-hsl));
+  --color-charcoal-500: hsl(var(--charcoal-500-hsl));
+  --color-charcoal-600: hsl(var(--charcoal-600-hsl));
+  --color-charcoal-700: hsl(var(--charcoal-700-hsl));
+  --color-charcoal-800: hsl(var(--charcoal-800-hsl));
+  --color-charcoal-900: hsl(var(--charcoal-900-hsl));
+
+  --color-aqua-50: hsl(var(--aqua-50-hsl));
+  --color-aqua-100: hsl(var(--aqua-100-hsl));
+  --color-aqua-200: hsl(var(--aqua-200-hsl));
+  --color-aqua-300: hsl(var(--aqua-300-hsl));
+  --color-aqua-400: hsl(var(--aqua-400-hsl));
+  --color-aqua-500: hsl(var(--aqua-500-hsl));
+  --color-aqua-600: hsl(var(--aqua-600-hsl));
+  --color-aqua-700: hsl(var(--aqua-700-hsl));
+  --color-aqua-800: hsl(var(--aqua-800-hsl));
+  --color-aqua-900: hsl(var(--aqua-900-hsl));
+
+  /* New Brand Colors */
+  --color-alabaster: hsl(var(--alabaster-hsl));
+  --color-powderblue: hsl(var(--powderblue-hsl));
+  --color-pacificblue: hsl(var(--pacificblue-hsl));
+  --color-charcoalblue: hsl(var(--charcoalblue-hsl));
+  --color-carbonblack: hsl(var(--carbonblack-hsl));
+
 }
 
-a {
-  font-weight: 500;
-  color: #646cff;
-  text-decoration: inherit;
-}
-a:hover {
-  color: #535bf2;
-}
-
-body {
-  margin: 0;
-  display: flex;
-  place-items: center;
-  min-width: 320px;
-  min-height: 100vh;
-}
-
-h1 {
-  font-size: 3.2em;
-  line-height: 1.1;
-}
-
-button {
-  border-radius: 8px;
-  border: 1px solid transparent;
-  padding: 0.6em 1.2em;
-  font-size: 1em;
-  font-weight: 500;
-  font-family: inherit;
-  background-color: #1a1a1a;
-  cursor: pointer;
-  transition: border-color 0.25s;
-}
-button:hover {
-  border-color: #646cff;
-}
-button:focus,
-button:focus-visible {
-  outline: 4px auto -webkit-focus-ring-color;
-}
-
-@media (prefers-color-scheme: light) {
+@layer base {
   :root {
-    color: #213547;
-    background-color: #ffffff;
+    /* Base surfaces (light) */
+    --background: var(--alabaster-hsl);
+    --foreground: var(--carbonblack-hsl);
+    --card: var(--alabaster-hsl);
+    --card-foreground: var(--carbonblack-hsl);
+    --popover: var(--alabaster-hsl);
+    --popover-foreground: var(--carbonblack-hsl);
+
+    /* System tokens referencing the brand palette */
+    --primary: var(--charcoalblue-hsl);
+    --primary-foreground: var(--alabaster-hsl);
+
+    --secondary: var(--carbonblack-hsl);
+    --secondary-foreground: var(--powderblue-hsl);
+
+    --muted: var(--powderblue-hsl);  /* lighter muted bg */
+    --muted-foreground: var(--charcoalblue-hsl);
+
+    --accent: var(--pacificblue-hsl);
+    --accent-foreground: var(--alabaster-hsl);
+
+    /* Destructive (kept as-is; adjust as needed) */
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: var(--offwhite-hsl);
+
+    /* Forms / borders from charcoal */
+    --border: var(--charcoal-200-hsl);
+    --input: var(--charcoal-200-hsl);
+
+    /* Focus ring follows primary */
+    --ring: var(--primary);
+
+    --radius: 0.5rem;
   }
-  a:hover {
-    color: #747bff;
+
+  .dark {
+    /* Base surfaces (dark) */
+    --background: var(--carbonblack-hsl);
+    --foreground: var(--powderblue-hsl);
+    --card: var(--carbonblack-hsl);
+    --card-foreground: var(--powderblue-hsl);
+    --popover: var(--charcoalblue-hsl);
+    --popover-foreground: var(--powderblue-hsl);
+
+    /* System tokens referencing the brand palette */
+    --primary: var(--powderblue-hsl);
+    --primary-foreground: var(--carbonblack-hsl);
+
+    --secondary: var(--alabaster-hsl);
+    --secondary-foreground: var(--charcoalblue-hsl);
+
+    --muted: var(--charcoalblue-hsl);  /* darker muted bg */
+    --muted-foreground: var(--powderblue-hsl);
+
+    --accent: var(--pacificblue-hsl);
+    --accent-foreground: var(--carbonblack-hsl);
+
+    /* Destructive (kept as-is) */
+    --destructive: 0 62.8% 30.6%;
+    --destructive-foreground: var(--offwhite-hsl);
+
+    /* Forms / borders */
+    --border: var(--charcoal-800-hsl);
+    --input: var(--charcoal-800-hsl);
+
+    /* Focus ring follows primary */
+    --ring: var(--primary);
   }
-  button {
-    background-color: #f9f9f9;
+
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-background text-foreground;
   }
 }
