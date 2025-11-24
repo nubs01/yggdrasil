@@ -28,14 +28,6 @@ class Settings(BaseSettings):
     # DEBUG
     DEBUG: bool = Field(False, env="DEBUG")
 
-    @property
-    def database_url(self) -> str:
-        return (
-            f"postgresql+asyncpg://{self.POSTGRES_USER}:"
-            f"{self.POSTGRES_PASSWORD}@{self.POSTGRES_HOST}:"
-            f"{self.POSTGRES_PORT}/{self.POSTGRES_DB}"
-        )
-
 
 @cache
 def get_settings() -> Settings:

@@ -27,8 +27,8 @@ test = [
 
 
 [project.scripts]
-local = "APP_ENV=local DEBUG=1 uvicorn app.main:app --reload"
-prod  = "APP_ENV=prod DEBUG=0 uvicorn app.main:app"
+local = "APP_ENV=local DEBUG=1 uvicorn src.main:app --reload"
+prod  = "APP_ENV=prod DEBUG=0 uvicorn src.main:app"
 
 
 [tool.pytest.ini_options]
