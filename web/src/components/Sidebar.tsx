@@ -41,7 +41,7 @@ export default function Sidebar() {
 
       {/* Footer */}
       <div className="p-4 border-t border-border">
-        <div className="text-xs text-muted-foreground text-center">Washabi v1.0</div>
+        <div className="text-xs text-muted-foreground text-center">Yggdrasil v1.0</div>
       </div>
     </div>
   )
