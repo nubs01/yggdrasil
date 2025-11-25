@@ -78,7 +78,7 @@ export default function MarketingHome() {
                   <span>Connections around “You” — the root of your personal world-tree</span>
                 </div>
                 <div className="hidden sm:flex items-center gap-2 rounded-full border border-border/60 px-3 py-1 text-xs bg-background/40">
-                  <span>Search the world tree…</span>
+                  <span>Traverse the tree…</span>
                   <span className="rounded-md border border-border/80 px-1.5 py-0.5 font-mono text-[10px] text-foreground/80">⌘K</span>
                 </div>
               </div>
